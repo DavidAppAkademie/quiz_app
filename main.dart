@@ -1,18 +1,27 @@
+import 'database_repository/database_repository.dart';
+import 'database_repository/mock_database.dart';
+import 'leaderboard.dart';
 import 'quiz_game.dart';
-import 'quiz_question.dart';
 
 void main() {
-  QuizQuestion q1 = QuizQuestion(
-    question: "Was ergibt 1 + 1",
-    answers: ["3", "200", "2", "0"],
-    correctAnswerIndex: 2,
-  );
+  // wie erstellen das databaseRepository einmalig für die gesamte App
+  // später Tauschen wir MockDatabase gegen eine echte Datenbank wie Firestore aus
+  // und müssen am Rest der App nichts ändern
+  DatabaseRepository databaseRepository = MockDatabase();
 
-  QuizGame quizgame1 = QuizGame(
-    chapterNumber: "3",
-    chapterName: "Grundlagen der Programmierung",
-    quizQuestions: [
-      q1,
-    ],
-  );
+  // angenommen wir benötigen die QuizGames für eine Übersichtsseite
+  List<QuizGame> quizGames = databaseRepository.getQuizgames();
+
+  for (QuizGame game in quizGames) {
+    print("Kapitel ${game.chapterNumber}: ${game.chapterName}");
+    print("Anzahl Fragen: ${game.getNumberOfQuestions()}");
+
+    // angenommen wir benötigen die Leaderboards für eine Highscore-Liste
+    Leaderboard? leaderboard = databaseRepository.getLeaderboard(game);
+    if (leaderboard != null) {
+      print("Highscore: ${leaderboard.scores}");
+    } else {
+      print("Highscore: noch keine Einträge");
+    }
+  }
 }
