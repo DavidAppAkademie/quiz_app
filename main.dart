@@ -1,5 +1,5 @@
-import 'database_repository/database_repository.dart';
-import 'database_repository/mock_database.dart';
+import 'data/database_repository.dart';
+import 'data/mock_database.dart';
 import 'domain/leaderboard.dart';
 import 'domain/quiz_game.dart';
 
