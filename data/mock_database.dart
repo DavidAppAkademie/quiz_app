@@ -41,7 +41,7 @@ class MockDatabase implements DatabaseRepository {
     } else {
       // Leaderboard existiert bereits
       // -> füge den Score zum gefundenen Leaderboard hinzu
-      leaderboard.addScore(score);
+      leaderboard.scores.add(score);
     }
   }
 }

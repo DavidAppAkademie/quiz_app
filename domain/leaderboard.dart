@@ -8,9 +8,4 @@ class Leaderboard {
 
   // Konstruktor
   Leaderboard({required this.quizGame, required this.scores});
-
-  // Methoden
-  void addScore(Score score) {
-    scores.add(score);
-  }
 }
