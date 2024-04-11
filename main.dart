@@ -1,7 +1,7 @@
 import 'database_repository/database_repository.dart';
 import 'database_repository/mock_database.dart';
-import 'leaderboard.dart';
-import 'quiz_game.dart';
+import 'domain/leaderboard.dart';
+import 'domain/quiz_game.dart';
 
 void main() {
   // wie erstellen das databaseRepository einmalig für die gesamte App

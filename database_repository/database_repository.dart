@@ -1,6 +1,6 @@
-import '../leaderboard.dart';
-import '../quiz_game.dart';
-import '../score.dart';
+import '../domain/leaderboard.dart';
+import '../domain/quiz_game.dart';
+import '../domain/score.dart';
 
 abstract class DatabaseRepository {
   /// gibt alle Quizgames aus der Datenbank zurück

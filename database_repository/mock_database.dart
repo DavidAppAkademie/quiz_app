@@ -1,7 +1,7 @@
-import '../leaderboard.dart';
-import '../quiz_game.dart';
-import '../quiz_question.dart';
-import '../score.dart';
+import '../domain/leaderboard.dart';
+import '../domain/quiz_game.dart';
+import '../domain/quiz_question.dart';
+import '../domain/score.dart';
 import 'database_repository.dart';
 
 class MockDatabase implements DatabaseRepository {
