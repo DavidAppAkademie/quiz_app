@@ -46,6 +46,7 @@ class MockDatabase implements DatabaseRepository {
   }
 }
 
+// Helper Functions - erstellen uns Beispieldaten
 List<QuizGame> _createMockQuizGames() {
 // Erstelle einige Quizfragen
   QuizQuestion q1 = QuizQuestion(
