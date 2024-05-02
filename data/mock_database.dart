@@ -7,7 +7,7 @@ import 'database_repository.dart';
 class MockDatabase implements DatabaseRepository {
   // Simulierte Datenbank
   List<QuizGame> quizGames = _createMockQuizGames();
-  List<Leaderboard> leaderboards = [];
+  List<Leaderboard> leaderboards = _createMockLeaderboards();
 
   // Methoden der Schablone `DatabaseRepository`
 
@@ -20,7 +20,7 @@ class MockDatabase implements DatabaseRepository {
   Leaderboard? getLeaderboard(QuizGame game) {
     // durchsuche alle Leaderboards nach dem gesuchten QuizGame
     for (Leaderboard l in leaderboards) {
-      if (l.quizGame == game) {
+      if (l.quizGameId == game.id) {
         // wenn das gesuchte QuizGame gefunden wurde, gib das Leaderboard zurück
         return l;
       }
@@ -35,7 +35,7 @@ class MockDatabase implements DatabaseRepository {
     if (leaderboard == null) {
       // Leaderboard existiert noch nicht
       // -> erstelle neues Leaderboard mit dem Score als erstem Eintrag
-      leaderboard = Leaderboard(quizGame: quizGame, scores: [score]);
+      leaderboard = Leaderboard(quizGameId: quizGame.id, scores: [score]);
       // füge das neue Leaderboard zur Liste der Leaderboards hinzu
       leaderboards.add(leaderboard);
     } else {
@@ -62,6 +62,7 @@ List<QuizGame> _createMockQuizGames() {
 
   // Erstelle ein Quizgame mit den erstellten Quizfragen
   QuizGame quizGame1 = QuizGame(
+    id: "1",
     chapterNumber: "3",
     chapterName: "Grundlagen der Programmierung",
     quizQuestions: [
@@ -70,6 +71,52 @@ List<QuizGame> _createMockQuizGames() {
     ],
   );
 
+  QuizQuestion q3 = QuizQuestion(
+    question: "Welches Widget wird verwendet, um Text anzuzeigen?",
+    answers: ["Text", "Container", "Column", "Row"],
+    correctAnswerIndex: 0,
+  );
+
+  QuizQuestion q4 = QuizQuestion(
+    question: "Welches Widget wird verwendet, um Widgets vertikal anzuordnen?",
+    answers: ["Text", "Container", "Column", "Row"],
+    correctAnswerIndex: 2,
+  );
+
+  QuizQuestion q5 = QuizQuestion(
+    question:
+        "Welches Widget wird verwendet, um Widgets horizontal anzuordnen?",
+    answers: ["Text", "Container", "Column", "Row"],
+    correctAnswerIndex: 3,
+  );
+
+  QuizGame quizGame2 = QuizGame(
+    id: "2",
+    chapterNumber: "4",
+    chapterName: "Flutter I",
+    quizQuestions: [
+      q3,
+      q4,
+      q5,
+    ],
+  );
+
   // Füge QuizGames zur Liste hinzu
-  return [quizGame1];
+  return [quizGame1, quizGame2];
+}
+
+List<Leaderboard> _createMockLeaderboards() {
+  // Erstelle einige Scores
+  Score score1 = Score(username: "David", score: 99.2);
+  Score score2 = Score(username: "Max", score: 44);
+  Score score3 = Score(username: "Anna", score: 55.5);
+
+  // Erstelle ein Leaderboard mit den erstellten Scores
+  Leaderboard leaderboard1 = Leaderboard(
+    quizGameId: "1",
+    scores: [score1, score2, score3],
+  );
+
+  // Füge Leaderboard zur Liste hinzu
+  return [leaderboard1];
 }

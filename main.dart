@@ -19,7 +19,7 @@ void main() {
     // angenommen wir benötigen die Leaderboards für eine Highscore-Liste
     Leaderboard? leaderboard = databaseRepository.getLeaderboard(game);
     if (leaderboard != null) {
-      print("Highscore: ${leaderboard.scores}");
+      print("Highscore: ${leaderboard.scores.length} Einträge");
     } else {
       print("Highscore: noch keine Einträge");
     }
